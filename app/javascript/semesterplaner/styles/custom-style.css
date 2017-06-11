@@ -1,0 +1,292 @@
+.semester {
+  display: inline;
+}
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
+button:hover,
+.button:hover {
+  color: #555;
+  border-color: #bbb;
+  outline: 0;
+}
+
+.default-cursor { cursor: default; }
+
+.fix{
+  background-color: #76B900;
+  padding-top: auto;
+}
+
+.wrapper{
+  margin: 30px 30px;
+}
+
+.green { background-color: #76B900; }
+.red { background-color: #FF5F00; }
+.yellow { background-color: #FFFF66; }
+.grey { background-color: #AFAFAF; }
+.blue {
+  background-color: #0082D1;
+  color: #FFFFF0;
+}
+.blue:hover {
+  color: #FFFFF0;
+}
+
+.button{
+  height: auto;
+  line-height: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+.moduleStatus{
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+/* ------- Tables -------  */
+
+td {
+  padding: 12px 15px;
+  text-align: left;
+  width: 15%;
+  border-bottom: 1px solid #E1E1E1;
+  border-right: 1px solid #E1E1E1; }
+
+th:first-child,
+td:first-child {
+  padding-left: 0;
+  text-align: center;
+  width: 15%;
+  border-right: 1px solid #E1E1E1;
+}
+
+tr:last-child {
+  padding-right: 0;
+}
+table{
+  width: 100%;
+  height: auto;
+}
+td:nth-child(even){
+  background: #f2f0f0;
+
+}
+
+/* ------- Spacing ---------- */
+div{
+  margin: 5px;
+}
+
+/* ---- Flex container ----- */
+
+div.flex-container{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  width: 100%;
+  margin: auto;
+  padding-bottom: 0px;
+}
+
+.flex-item{
+  vertical-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  margin-top: 10px;
+  padding-bottom: 0px;
+}
+
+.item1,
+.item2,
+.item3,
+.item4,
+.item5,
+.item6{
+  flex: 2;
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* -------Box-sizing ------------- */
+
+*{
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+/* -------Misc ------------- */
+
+legend{
+  padding: 0px 0px;
+  width: 100%;
+}
+
+legend h6{
+  margin-bottom: 0px;
+}
+
+section#symbology{
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding: 0px;
+  margin-bottom: 5px;
+}
+
+.available,
+.started,
+.completed,
+.urgent,
+.selected,
+.selected_urgent{
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+}
+
+.available{
+  background-color: #0082D1;
+ }
+.started{
+  background-color: #FFFF66;
+}
+.completed{
+  background-color: #AFAFAF;
+}
+.urgent{
+  background-color: #FF5F00;
+}
+.selected{
+  background-color: #76B900;
+}
+
+section#coursePlan{
+  text-align: left;
+  border: 1px solid grey;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+section#home{
+  text-align: left;
+  border: 1px solid grey;
+  padding: 10px;
+  margin-bottom: 5px;
+  }
+
+section#planningSection{
+  border: 1px solid grey;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+div#sum{
+  width: 30%;
+  display: inline-block;
+  min-height: 460px;
+}
+div#sum_total{
+  border: 1px solid grey;
+  text-align: center;
+  padding: 20px;
+  height: 180px;
+}
+div#sum_current{
+  border: 1px solid grey;
+  text-align: center;
+  padding: 20px;
+  height: 270px;
+}
+div#coursePool{
+  border: 1px solid grey;
+  min-width: 67%;
+  min-height: 380px;
+  text-align: center;
+}
+.bordertype{
+    border: 3px dashed grey;
+    border-radius: 70px;
+    margin: 40px 40px 40px 40px;
+    width: 90%;
+    height: 380px;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    overflow-y: scroll;
+}
+
+.infotext{
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-weight: 600;
+  font-style: italic;
+}
+
+section#schedule{
+  border: 1px solid grey;
+  padding: 10px;
+  height: auto;
+  margin-bottom: 5px;
+}
+.float-left{
+  float: left;
+}
+.float-right{
+  float: right;
+}
+
+footer{
+  text-align: center;
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* ------- Popup ------------- */
+
+.cover {
+  background:rgba(0,0,0,0.2);
+  height:100%;
+  left:0;
+  margin: auto;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:5;
+}
+
+.popup {
+  background-color: white;
+  border: 3px solid #FF5F00;
+  border-radius:10px;
+  left: 25%;
+  margin:0 auto;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 40%;
+  width:50%;
+  z-index: 999;
+}
+
+.popup:target,
+.popup:target + .cover{
+  display:block; opacity:10;
+}
+
+.redHover:hover { background-color: #FF5F00; }
+
+.greenHover:hover { background-color: #76B900; }
+
+.marginButton { margin: 0 5px; }

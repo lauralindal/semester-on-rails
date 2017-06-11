@@ -1,0 +1,2 @@
+class Studiengang < ApplicationRecord
+end

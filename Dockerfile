@@ -12,5 +12,9 @@ ADD Gemfile /usr/app/Gemfile
 ADD Gemfile.lock /usr/app/Gemfile.lock
 RUN bundle install
 
+RUN npm install --global yarn
+RUN rails webpacker:install
+RUN rails webpacker:install:react
+
 # Hausaufgabe: App soll auf localhost:3030 laufen
-# yarn, npm, js-packages, foreman 
+# yarn, npm, js-packages, foreman

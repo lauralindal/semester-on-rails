@@ -3,6 +3,7 @@ FROM ruby:2.4.1-alpine
 # install some packages that we will need later
 
 RUN apk --update add --virtual build-base ruby-dev build-dependencies
+RUN apk add postgresql-dev
 RUN apk add nodejs
 RUN apk add tzdata
 
@@ -13,8 +14,7 @@ ADD Gemfile.lock /usr/app/Gemfile.lock
 RUN bundle install
 
 RUN npm install --global yarn
-RUN rails webpacker:install
-RUN rails webpacker:install:react
 
-# Hausaufgabe: App soll auf localhost:3030 laufen
-# yarn, npm, js-packages, foreman
+EXPOSE 5000
+EXPOSE 8080
+CMD foreman start

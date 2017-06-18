@@ -1,0 +1,21 @@
+web:
+  build: .
+  dockerfile: Dockerfile
+  command: bundle exec foreman start
+  volumes:
+    - .:/usr/app
+  ports:
+    - "5000:5000"
+    - "8080:8080"
+  links:
+    - postgres
+
+postgres:
+  image: postgres:9.6
+  volumes:
+    - postgres_data:/var/lib/postgresql
+  ports:
+    - "5432"
+  environment:
+    - PG_HOST=postgres
+    - PG_USERNAME=postgres

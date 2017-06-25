@@ -10,7 +10,7 @@ default: &default
 
 development:
   <<: *default
-  host: localhost
+  host: postgres
   username: postgres
   password: postgres
 

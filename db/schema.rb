@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611183932) do
+ActiveRecord::Schema.define(version: 20170625144940) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "moduls", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "credit_points"
+    t.boolean "prerequisite"
+    t.integer "recommended_semester"
+    t.bigint "studiengang_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["studiengang_id"], name: "index_moduls_on_studiengang_id"
+  end
 
   create_table "studiengangs", force: :cascade do |t|
     t.integer "credit_points"
@@ -19,4 +34,5 @@ ActiveRecord::Schema.define(version: 20170611183932) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "moduls", "studiengangs"
 end

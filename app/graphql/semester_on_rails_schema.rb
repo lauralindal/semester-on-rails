@@ -5,8 +5,10 @@ SemesterOnRailsSchema = GraphQL::Schema.define do
     case obj
     when Studiengang
       Types::StudiengangType
+    when Modul
+      Types::ModulType
     else
-      raise("Ich kann nur Studiengang, keinen #{obj.class.name}.")
+      raise("Ich kann nur Studiengang oder Modul, keinen #{obj.class.name}.")
     end
   end
 

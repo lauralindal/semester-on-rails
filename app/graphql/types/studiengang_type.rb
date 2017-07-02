@@ -7,6 +7,7 @@ module Types
     global_id_field :id
     field :name, !types.String, "Bezeichnung des Studiengangs"
     field :credit_points, !types.Int, "Maximal erreichbare Leistungspunkte"
+    connection :moduls, ModulType.connection_type
     # connection :friends, CharacterInterface.connection_type, "Friends of this person"
     # field :appearsIn, types[EpisodeEnum], "Episodes this person appears in", property: :appears_in
     # field :homePlanet, types.String, "Where this person is from", property: :home_planet

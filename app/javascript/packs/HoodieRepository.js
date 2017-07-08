@@ -8,7 +8,9 @@ export default class HoodieRepository {
   }
 
   getCurrentUserData() {
-    return Promise.resolve([]);
+    return Promise.resolve({
+      userModules: []
+    });
   }
 
   signIn(email, password) {

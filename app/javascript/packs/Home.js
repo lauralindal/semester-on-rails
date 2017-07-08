@@ -6,7 +6,7 @@ import PlanningSection from './PlanningSection';
 import CourseSchedule from './CourseSchedule';
 import Popup from './PopupAlert.js';
 import HoodieRepository from './HoodieRepository.js';
-import moduleplan from './moduleplan.json';
+import StammdatenRepository from './StammdatenRepository.js';
 import users from './users.json';
 import courseData from './courseData.json';
 import '../semesterplaner/styles/normalize.css';
@@ -18,8 +18,10 @@ class Home extends React.Component {
   constructor(){
     super();
     this.repository = new HoodieRepository();
+    this.stammdaten = new StammdatenRepository();
     this.state = {
       isLoggedIn: this.repository.isSignedIn(),
+      moduleplan: [],
       userModules: users.students[0].tracked_modules,
       popupDismissed: false,
       clicked: false,
@@ -32,13 +34,17 @@ class Home extends React.Component {
   componentDidMount() {
     var isLoggedIn = this.state.isLoggedIn;
     if(isLoggedIn){
-      this.getCurrentUserData();
+      this.getCurrentUserData().then(() => {
+        this.loadModules();
+      });
     }
   };
 
  // when we ask hoodie for all it has in store, we get an array of objects,
  // so we want to pick the newest document/object which will contain the
  // most current set of module information for our user
+
+ // this is where shit is broken b/c of hoodie
   getCurrentUserData(){
     var self = this;
     return this.repository.getCurrentUserData().then(function(userDataSet){
@@ -80,11 +86,19 @@ class Home extends React.Component {
     })
   };
 
+  loadModules() {
+    this.stammdaten.getModulData().then((resultSet) => {
+      var modules = resultSet.data.studiengang.moduls.edges;
+      this.setState({
+        moduleplan: modules
+      });
+    });
+  }
+
   getSemestersForUser() {
-    var userModules = this.state.userModules;
-    var modules = moduleplan.degree_course.modules;
+    const { userModules, moduleplan } = this.state;
     var semesters = [1,2,3,4,5,6].map(function(semester) {
-      var filteredModules = modules.filter(function(module) {
+      var filteredModules = moduleplan.filter(function(module) {
         return module.recommended_semester === semester;
       });
       return filteredModules.map(function(module) {
@@ -101,24 +115,22 @@ class Home extends React.Component {
   };
 
   calculateTotalCredits() {
-    var userModules = this.state.userModules;
-    var modules = moduleplan.degree_course.modules;
+    const { userModules, moduleplan } = this.state;
     var totalCredits= 0;
-    for (var i = 0; i < userModules.length; i++) {
+    for (var i = 0; i < moduleplan.length; i++) {
       if (userModules[i].status === "completed"){
-        totalCredits= totalCredits + modules[i].cp;
+        totalCredits= totalCredits + moduleplan[i].cp;
       }
     }
     return totalCredits;
   };
 
   calculateCurrentCredits() {
-    var userModules = this.state.userModules;
-    var modules = moduleplan.degree_course.modules;
+    const { userModules, moduleplan } = this.state;
     var currentCredits= 0;
-    for (var i = 0; i < userModules.length; i++) {
+    for (var i = 0; i < moduleplan.length; i++) {
       if (userModules[i].selected){
-        currentCredits= currentCredits + modules[i].cp;
+        currentCredits= currentCredits + moduleplan[i].cp;
       }
     }
     return currentCredits;
@@ -132,8 +144,7 @@ class Home extends React.Component {
   };
 
   countSelectedCourses() {
-    var userModules = this.state.userModules;
-    var modules = moduleplan.degree_course.modules;
+    const { userModules } = this.state;
     var selectedCoursesCounter = 0;
     for (var i = 0; i < userModules.length; i++) {
       if (userModules[i].selected){
@@ -144,7 +155,7 @@ class Home extends React.Component {
   };
 
   retrieveSelectedCourseInfo() {
-    var userModules = this.state.userModules;
+    const { userModules } = this.state;
     var courseInfo = courseData.timetable.lectures;
     var selectedModuleIds= [];
     var selectedCourseData= [];
@@ -164,8 +175,7 @@ class Home extends React.Component {
   };
 
   retrieveSelectedModuleTitle(){
-    var userModules = this.state.userModules;
-    var modules = moduleplan.degree_course.modules;
+    const { userModules, moduleplan } = this.state;
     var selectedModuleIds = [];
     var selectedModuleTitles = [];
     for (var i = 0; i < userModules.length; i++) {
@@ -174,9 +184,9 @@ class Home extends React.Component {
       }
     }
     for (var i = 0; i < selectedModuleIds.length; i++) {
-      for (var j=0; j < modules.length; j++){
-        if (selectedModuleIds[i] === modules[j].id) {
-          selectedModuleTitles.push(modules[j].title);
+      for (var j=0; j < moduleplan.length; j++){
+        if (selectedModuleIds[i] === moduleplan[j].id) {
+          selectedModuleTitles.push(moduleplan[j].title);
         }
       }
     }
@@ -184,8 +194,7 @@ class Home extends React.Component {
   };
 
   retrieveSelectedModules(){
-    var userModules = this.state.userModules;
-    var modules = moduleplan.degree_course.modules;
+    const { userModules, moduleplan } = this.state;
     var selectedModuleIds = [];
     var selectedModuleTitles = [];
     for (var i = 0; i < userModules.length; i++) {
@@ -194,10 +203,10 @@ class Home extends React.Component {
       }
     }
     for (var i = 0; i < selectedModuleIds.length; i++) {
-      for (var j=0; j < modules.length; j++){
-        if (selectedModuleIds[i] === modules[j].id) {
-          modules[j].module_id = selectedModuleIds[i];
-          selectedModuleTitles.push(modules[j]);
+      for (var j=0; j < moduleplan.length; j++){
+        if (selectedModuleIds[i] === moduleplan[j].id) {
+          moduleplan[j].module_id = selectedModuleIds[i];
+          selectedModuleTitles.push(moduleplan[j]);
         }
       }
     }
@@ -206,11 +215,11 @@ class Home extends React.Component {
 
   combineSelectedTitlesAndData(){
     var courseInformation = this.retrieveSelectedCourseInfo();
-    var modules = moduleplan.degree_course.modules;
-    for (var i = 0; i < modules.length; i++) {
+    const { moduleplan } = this.state;
+    for (var i = 0; i < moduleplan.length; i++) {
       for (var j=0; j < courseInformation.length; j++)
-      if (modules[i].id === courseInformation[j].related_module_id){
-        courseInformation[j].title = modules[i].title;
+      if (moduleplan[i].id === courseInformation[j].related_module_id){
+        courseInformation[j].title = moduleplan[i].title;
       }
     }
     return courseInformation;
@@ -218,7 +227,7 @@ class Home extends React.Component {
 
   toggleModule(moduleId, e){
     e.preventDefault();
-    var userModules = this.state.userModules;
+    const { userModules } = this.state;
     var data = null;
     for (var i = 0; i < userModules.length; i++) {
       if (userModules[i].module_id === moduleId){
@@ -236,7 +245,6 @@ class Home extends React.Component {
     var urgentModules = userModules.filter((userModule)=> {
       return userModule.status === "urgent";
     })
-
     this.setState({
       userModules: userModules,
       clicked: urgentModules.length > 0
@@ -267,16 +275,15 @@ class Home extends React.Component {
   };
 
   returnUrgentModuleTitles() {
-    var modules = moduleplan.degree_course.modules;
-    var userModules = this.state.userModules;
+    const { userModules, moduleplan } = this.state;
     var urgentModules = userModules.filter((userModule)=> {
       return userModule.status === "urgent";
     });
-    for(var i = 0; i<modules.length; i++){
+    for(var i = 0; i < moduleplan.length; i++){
       for(var e = 0; e < urgentModules.length; e++){
-        if(modules[i].id === urgentModules[e].module_id){
+        if(moduleplan[i].id === urgentModules[e].module_id){
           var urgentModuleTitles = [];
-          urgentModuleTitles.push(modules[i].title);
+          urgentModuleTitles.push(moduleplan[i].title);
         }
       }
     }

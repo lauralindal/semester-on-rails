@@ -4,7 +4,7 @@
     "max_creditpoints": 180,
     "modules": [
       {
-        "id": 1,
+        "reference_id": 1,
         "title": "Programmierung 1",
         "description": "Kara",
         "credit_points": 6,
@@ -12,7 +12,7 @@
         "recommended_semester": 1
       },
       {
-        "id": 2,
+        "reference_id": 2,
         "title": "Grundlegende Konzepte der Informatik",
         "description": "Hackhack",
         "credit_points": 5,
@@ -20,7 +20,7 @@
         "recommended_semester": 1
       },
       {
-        "id": 3,
+        "reference_id": 3,
         "title": "Mathematik",
         "description": "Yay",
         "credit_points": 5,
@@ -28,7 +28,7 @@
         "recommended_semester": 1
       },
       {
-        "id": 4,
+        "reference_id": 4,
         "title": "Rechnerarchitektur / Betriebssysteme",
         "description": "Computer aufschrauben",
         "credit_points": 5,
@@ -36,7 +36,7 @@
         "recommended_semester": 1
       },
       {
-        "id": 5,
+        "reference_id": 5,
         "title": "Grundlagen der BWL",
         "description": "Wirtschaftskram",
         "credit_points": 5,
@@ -44,7 +44,7 @@
         "recommended_semester": 1
       },
       {
-        "id": 6,
+        "reference_id": 6,
         "title": "Fremdsprache 1",
         "description": "zB Englisch",
         "credit_points": 4,
@@ -52,7 +52,7 @@
         "recommended_semester": 1
       },
       {
-        "id": 7,
+        "reference_id": 7,
         "title": "Programmierung 2",
         "description": "Mehr als Kara",
         "credit_points": 5,
@@ -60,7 +60,7 @@
         "recommended_semester": 2
       },
       {
-        "id": 8,
+        "reference_id": 8,
         "title": "Softwaretechnik",
         "description": "Diagramme",
         "credit_points": 5,
@@ -68,7 +68,7 @@
         "recommended_semester": 2
       },
       {
-        "id": 9,
+        "reference_id": 9,
         "title": "Betriebliche Anwendungen",
         "description": "SAP",
         "credit_points": 5,
@@ -76,7 +76,7 @@
         "recommended_semester": 2
       },
       {
-        "id": 10,
+        "reference_id": 10,
         "title": "Rechnernetze",
         "description": "Terminal",
         "credit_points": 6,
@@ -84,7 +84,7 @@
         "recommended_semester": 2
       },
       {
-        "id": 11,
+        "reference_id": 11,
         "title": "Rechnungswesen",
         "description": "Soll an Haben",
         "credit_points": 5,
@@ -92,7 +92,7 @@
         "recommended_semester": 2
       },
       {
-        "id": 12,
+        "reference_id": 12,
         "title": "Fremdsprache 2",
         "description": "zB Englisch",
         "credit_points": 4,
@@ -100,7 +100,7 @@
         "recommended_semester": 2
       },
       {
-        "id": 13,
+        "reference_id": 13,
         "title": "Webtechnologien",
         "description": "HTML CSS Ruby/PHP",
         "credit_points": 5,
@@ -108,7 +108,7 @@
         "recommended_semester": 3
       },
       {
-        "id": 14,
+        "reference_id": 14,
         "title": "Datenbanksysteme",
         "description": "SQL",
         "credit_points": 5,
@@ -116,7 +116,7 @@
         "recommended_semester": 3
       },
       {
-        "id": 15,
+        "reference_id": 15,
         "title": "Teamarbeit",
         "description": "Projektmanagement und Konfliktmanagement",
         "credit_points": 5,
@@ -124,7 +124,7 @@
         "recommended_semester": 3
       },
       {
-        "id": 16,
+        "reference_id": 16,
         "title": "Datenschutz und Datensicherheit",
         "description": "Webserver absichern",
         "credit_points": 5,
@@ -132,7 +132,7 @@
         "recommended_semester": 3
       },
       {
-        "id": 17,
+        "reference_id": 17,
         "title": "Projekte in der Wirtschaft",
         "description": "Ernst des Lebens",
         "credit_points": 10,
@@ -140,7 +140,7 @@
         "recommended_semester": 3
       },
       {
-        "id": 18,
+        "reference_id": 18,
         "title": "Praxisphase",
         "description": "Praktikum und Karrieremanagement",
         "credit_points": 25,
@@ -148,7 +148,7 @@
         "recommended_semester": 4
       },
       {
-        "id": 19,
+        "reference_id": 19,
         "title": "Besondere Kapitel der Informatik",
         "description": "Hier bitte Kurs wählen",
         "credit_points": 5,
@@ -156,7 +156,7 @@
         "recommended_semester": 4
       },
       {
-        "id": 20,
+        "reference_id": 20,
         "title": "Modellierung von Informationssystemen",
         "description": "UMLle",
         "credit_points": 5,
@@ -164,7 +164,7 @@
         "recommended_semester": 5
       },
       {
-        "id": 21,
+        "reference_id": 21,
         "title": "Praxis in Forschung und Entwicklung",
         "description": "Projekt und Wissenschaftliches Arbeiten",
         "credit_points": 10,
@@ -172,7 +172,7 @@
         "recommended_semester": 5
       },
       {
-        "id": 22,
+        "reference_id": 22,
         "title": "Besondere Kapitel der Wirtschaftsinformatik",
         "description": "Bitte wählen",
         "credit_points": 5,
@@ -180,7 +180,7 @@
         "recommended_semester": 5
       },
       {
-        "id": 23,
+        "reference_id": 23,
         "title": "Verteilte Systeme",
         "description": "Wie funktioneren Netze",
         "credit_points": 5,
@@ -188,7 +188,7 @@
         "recommended_semester": 5
       },
       {
-        "id": 24,
+        "reference_id": 24,
         "title": "Betriebswirtschaftliches Denken und Handeln",
         "description": "Ih-Commerce",
         "credit_points": 5,
@@ -196,7 +196,7 @@
         "recommended_semester": 5
       },
       {
-        "id": 25,
+        "reference_id": 25,
         "title": "AWE 1 & 2",
         "description": "Hier auch wählen",
         "credit_points": 4,
@@ -204,7 +204,7 @@
         "recommended_semester": 5
       },
       {
-        "id": 26,
+        "reference_id": 26,
         "title": "Aktuelle Trends Informations- / Kommunikationstechnik",
         "description": "Ähhhh",
         "credit_points": 5,
@@ -212,7 +212,7 @@
         "recommended_semester": 6
       },
       {
-        "id": 27,
+        "reference_id": 27,
         "title": "Usability",
         "description": "Programmieren mit Sinn",
         "credit_points": 6,
@@ -220,7 +220,7 @@
         "recommended_semester": 6
       },
       {
-        "id": 28,
+        "reference_id": 28,
         "title": "Bachelorarbeit",
         "description": "Der Ernst vorm Ende",
         "credit_points": 12,
@@ -228,7 +228,7 @@
         "recommended_semester": 6
       },
       {
-        "id": 29,
+        "reference_id": 29,
         "title": "Bachelorkolloquium",
         "description": "Arbeit besprechen",
         "credit_points": 3,

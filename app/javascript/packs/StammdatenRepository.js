@@ -27,7 +27,8 @@ export default class StammdatenRepository {
               description,
               credit_points,
               prerequisite,
-              recommended_semester
+              recommended_semester,
+              reference_id
             }
           }
         }

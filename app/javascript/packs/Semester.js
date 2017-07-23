@@ -3,6 +3,7 @@ import Module from './Module';
 
 class Semester extends React.Component {
   render() {
+    console.log(this.props);
     var _this=this;
     return (
       <div key={"semester_" + this.props.semester}>

@@ -20,7 +20,7 @@ class Home extends React.Component {
     this.repository = new HoodieRepository();
     this.stammdaten = new StammdatenRepository();
     this.state = {
-      isLoggedIn: this.repository.isSignedIn(),
+      isLoggedIn: true,
       moduleplan: [],
       userModules: users.students[0].tracked_modules,
       popupDismissed: false,
@@ -34,9 +34,7 @@ class Home extends React.Component {
   componentDidMount() {
     var isLoggedIn = this.state.isLoggedIn;
     if(isLoggedIn){
-      this.getCurrentUserData().then(() => {
-        this.loadModules();
-      });
+      this.loadModules();
     }
   };
 
@@ -89,21 +87,28 @@ class Home extends React.Component {
   loadModules() {
     this.stammdaten.getModulData().then((resultSet) => {
       var modules = resultSet.data.studiengang.moduls.edges;
+      modules = modules.map(function(module) {
+        return module.node;
+      });
       this.setState({
         moduleplan: modules
       });
+
     });
   }
 
   getSemestersForUser() {
     const { userModules, moduleplan } = this.state;
+    if( moduleplan.length == 0){
+      return [];
+    }
     var semesters = [1,2,3,4,5,6].map(function(semester) {
       var filteredModules = moduleplan.filter(function(module) {
         return module.recommended_semester === semester;
       });
       return filteredModules.map(function(module) {
         var userModule = userModules.find(function(userModule) {
-          return userModule.module_id === module.id;
+          return userModule.reference_id === module.reference_id;
         });
         return {
           module: module,
@@ -161,7 +166,7 @@ class Home extends React.Component {
     var selectedCourseData= [];
     for (var i = 0; i < userModules.length; i++) {
       if (userModules[i].selected){
-        selectedModuleIds.push(userModules[i].module_id);
+        selectedModuleIds.push(userModules[i].reference_id);
       }
     }
     for (var i = 0; i < selectedModuleIds.length; i++) {
@@ -180,7 +185,7 @@ class Home extends React.Component {
     var selectedModuleTitles = [];
     for (var i = 0; i < userModules.length; i++) {
       if (userModules[i].selected){
-        selectedModuleIds.push(userModules[i].module_id);
+        selectedModuleIds.push(userModules[i].reference_id);
       }
     }
     for (var i = 0; i < selectedModuleIds.length; i++) {
@@ -199,13 +204,13 @@ class Home extends React.Component {
     var selectedModuleTitles = [];
     for (var i = 0; i < userModules.length; i++) {
       if (userModules[i].selected){
-        selectedModuleIds.push(userModules[i].module_id);
+        selectedModuleIds.push(userModules[i].reference_id);
       }
     }
     for (var i = 0; i < selectedModuleIds.length; i++) {
       for (var j=0; j < moduleplan.length; j++){
         if (selectedModuleIds[i] === moduleplan[j].id) {
-          moduleplan[j].module_id = selectedModuleIds[i];
+          moduleplan[j].reference_id = selectedModuleIds[i];
           selectedModuleTitles.push(moduleplan[j]);
         }
       }
@@ -230,7 +235,7 @@ class Home extends React.Component {
     const { userModules } = this.state;
     var data = null;
     for (var i = 0; i < userModules.length; i++) {
-      if (userModules[i].module_id === moduleId){
+      if (userModules[i].reference_id === moduleId){
         if(userModules[i].status === "completed"){
           return;
         }
@@ -281,7 +286,7 @@ class Home extends React.Component {
     });
     for(var i = 0; i < moduleplan.length; i++){
       for(var e = 0; e < urgentModules.length; e++){
-        if(moduleplan[i].id === urgentModules[e].module_id){
+        if(moduleplan[i].id === urgentModules[e].reference_id){
           var urgentModuleTitles = [];
           urgentModuleTitles.push(moduleplan[i].title);
         }

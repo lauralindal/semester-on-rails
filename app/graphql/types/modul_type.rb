@@ -10,6 +10,7 @@ module Types
     field :credit_points, !types.Int, "Credit Point für dieses Modul"
     field :prerequisite, !types.Boolean, "Muss ein anderes Modul für die Belegung abgeschlossen sein?"
     field :recommended_semester, !types.Int, "Soll in diesem Semester belegt werden"
+    field :reference_id, !types.Int, "ID des Moduls"
     # connection :friends, CharacterInterface.connection_type, "Friends of this person"
     # field :appearsIn, types[EpisodeEnum], "Episodes this person appears in", property: :appears_in
     # field :homePlanet, types.String, "Where this person is from", property: :home_planet

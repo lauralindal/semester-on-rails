@@ -1,5 +1,12 @@
 # README
 
+Diese Anwendung ist eine Weiterentwicklung des [Semesterplaners](https://github.com/lauralindal/dein-semesterplaner). Dieser Prototyp zeigt eine Übersicht über bisher absolvierte, angefangene und noch zu erledigende Module im Rahmen einer Studienordnung. Außerdem berechnet der Semesterplaner die erreichten Leistungspunkte und schätzt die Dauer der restlichen Studienzeit. Kurse für das kommende Semester lassen sich ebenfalls auswählen und die dazugehörigen Termine werden in einem Kalender angezeigt.
+
+Aktuell verwendet die Anwendung eine Mischung aus Mock-Daten und jene, die dich Hochschule frei zur Verfügung stellt.
+
+
+### Setup
+
 Der aktuelle Branch ist `erster-versuch`. Dort befinden sich die wichtigsten Entwicklungen (im Prozess).
 
 Zur Vereinfachung wurde mithilfe von Docker eine Entwicklungsumgebung ermöglicht. Du musst also lediglich die Docker Community Edition [installieren](https://docs.docker.com/engine/installation/) und auch [docker-compose](https://docs.docker.com/compose/install/).

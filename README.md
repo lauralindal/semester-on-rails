@@ -10,8 +10,16 @@ Baue das Projekt mit `$ docker-compose build web`.
 
 Starte das Projekt mit `$ docker-compose up web`.
 
+(Gegebenenfalls musst du noch `$ docker-compose run web yarn install` laufen lassen.)
+
 Der Semesterplaner läuft dann auf Port `5000`.
 
-Mit `$ docker-compose run [Befehl]` kannst du Befehle in den Container reinreichen.
+Installieren die Migrations mit `$ docker-compose run web rails db:migrate RAILS_ENV=development`.
+
+Mit `$ docker-compose run [Befehl]` kannst du weitere Befehle in den Container reinreichen.
 
 Viel Spaß beim Entwickeln!
+
+### Troubleshooting
+
+Bei der Fehlermeldung `A server is already running. Check /usr/app/tmp/pids/server.pid` musst du lediglich die dort genannte Datei löschen `$ rm tmp/pids/server.pid`.
